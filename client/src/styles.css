@@ -17,6 +17,10 @@
   color: #333333;
 }
 
+.member-tabset > .nav-tabs > li > a {
+  transition: none;  
+}
+
 .member-tabset > .nav-tabs > li.open > a > i,
 .member-tabset > .nav-tabs > li:hover > a > i {
   color: #a6a6a6;
@@ -28,7 +32,7 @@
 }
 
 .member-tabset > .nav-tabs > li.active {
-  border-bottom: 4px solid #e95420;
+  border-bottom: 4px solid #eb6864;
   position: relative;
 }
 
