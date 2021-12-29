@@ -3,7 +3,9 @@
 }
 
 img {
-    max-height: 50px;
-    border: 2px solid #fff;
+    max-height: 35px;
+    border: 1px solid #fff;
+    border-radius: 50%;
     display: inline;
+    margin-right: 5px;
 }
