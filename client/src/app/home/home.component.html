@@ -1,10 +1,12 @@
 <div class="container mt-5">
-    <div *ngIf="!registerMode" style ='text-align: center;'>
-        <h1>Find your superhero</h1>
-        <p class="lead">Come on in to view your heroes... All you need to do is sign up!</p>
-        <div class="text-center">
-            <button (click)="registerToggle()" class="btn btn-primary btn-lg mr-2">Register</button>
-            <button class="btn btn-info btn-lg">Learn more</button>
+    <div *ngIf="(accountService.currentUser$ | async) === null; else loggedIn">
+        <div *ngIf="!registerMode" style ='text-align: center;'>
+            <h1>Find your superhero</h1>
+            <p class="lead">Come on in to view your favorite heroes... All you need to do is sign up!</p>
+            <div class="text-center">
+                <button (click)="registerToggle()" class="btn btn-primary btn-lg mr-2">Register</button>
+                <button class="btn btn-info btn-lg">Learn more</button>
+            </div>
         </div>
     </div>
 
@@ -15,4 +17,28 @@
             </div>
         </div>
     </div>
+
+    <ng-template #loggedIn>
+        <div class="row">
+            <h1 style="text-align: center; margin-bottom: 25px;">Find your superhero</h1>
+            <div *ngFor="let member of members" class="col-2 text-center">
+              <app-member-card [member]="member"></app-member-card>
+            </div>
+          
+            <div class="d-flex justify-content-center" *ngIf="pagination">
+              <pagination
+                [boundaryLinks]="true"
+                [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage"
+                [(ngModel)]="pagination.currentPage"
+                (pageChanged)="pageChanged($event)"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"
+              >
+              </pagination>
+            </div>
+          </div>
+    </ng-template>
 </div>

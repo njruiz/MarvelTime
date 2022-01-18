@@ -7,7 +7,7 @@
         [(ngModel)]="predicate"
         (click)="loadLikes()"
       >
-        Heroes I like
+        Following
       </button>
       <button
         class="btn btn-primary"
@@ -15,7 +15,7 @@
         [(ngModel)]="predicate"
         (click)="loadLikes()"
       >
-        Heroes who like me
+        Followers
       </button>
     </div>
   </div>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-center" *ngIf="pagination">
+  <div class="d-flex justify-content-center" *ngIf="(pagination) && members.length > 0">
     <pagination
       [boundaryLinks]="true"
       [totalItems]="pagination.totalItems"
