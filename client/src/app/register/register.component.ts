@@ -1,8 +1,12 @@
-import { Location } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -18,7 +22,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private toastr: ToastrService,
     private fb: FormBuilder,
     private router: Router
   ) {}
@@ -37,15 +40,28 @@ export class RegisterComponent implements OnInit {
       dateOfBirth: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
-      confirmPassword: ['', [Validators.required, this.matchValues('password')]]
-    })
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(16),
+          Validators.pattern(/^(?=[^\d]*\d)(?=[^\W]*\W)/),
+        ],
+      ],
+      confirmPassword: [
+        '',
+        [Validators.required, this.matchValues('password')],
+      ],
+    });
   }
 
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
-      return control?.value === control?.parent?.controls[matchTo].value ? null : {isMatching: true}
-    }
+      return control?.value === control?.parent?.controls[matchTo].value
+        ? null
+        : { isMatching: true };
+    };
   }
 
   register() {

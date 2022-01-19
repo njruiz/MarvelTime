@@ -18,7 +18,10 @@ export class HomeComponent implements OnInit {
   user: User;
   registerMode = false;
 
-  constructor(public accountService: AccountService, private memberService: MembersService) {
+  constructor(
+    public accountService: AccountService,
+    private memberService: MembersService
+  ) {
     this.userParams = this.memberService.getUserParams();
   }
 
@@ -27,11 +30,13 @@ export class HomeComponent implements OnInit {
   }
 
   loadMembers() {
-    this.memberService.setUserParams(this.userParams);
-    this.memberService.getMembers(this.userParams).subscribe((response) => {
-      this.members = response.result;
-      this.pagination = response.pagination;
-    });
+    if (this.memberService.user != null) {
+      this.memberService.setUserParams(this.userParams);
+      this.memberService.getMembers(this.userParams).subscribe((response) => {
+        this.members = response.result;
+        this.pagination = response.pagination;
+      });
+    }
   }
 
   registerToggle() {
