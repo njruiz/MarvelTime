@@ -3,5 +3,9 @@
 }
 
 .btn-danger {
-    color: black;
+    background-color: #da292e;
+}
+
+.btn-danger:hover {
+    background-color: #b92327;
 }

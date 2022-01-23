@@ -110,5 +110,18 @@ namespace API.Controllers
             
             return Ok();
         }
+
+        [HttpPost("delete-user/{username}")]
+        public async Task<ActionResult> DeleteUser(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null) return NotFound("Could not find user");
+
+            _unitOfWork.UserRepository.DeleteUser(user);
+
+            await _unitOfWork.Complete();
+            return Ok();
+        }
     }
 }

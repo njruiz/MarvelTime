@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { RolesModalComponent } from 'src/app/modals/roles-modal/roles-modal.component';
 import { User } from 'src/app/_models/user';
 import { AdminService } from 'src/app/_services/admin.service';
+import { ConfirmService } from 'src/app/_services/confirm.service';
 
 @Component({
   selector: 'app-user-management',
@@ -15,7 +16,8 @@ export class UserManagementComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private confirmService: ConfirmService
   ) {}
 
   ngOnInit(): void {
@@ -79,5 +81,20 @@ export class UserManagementComponent implements OnInit {
       }
     });
     return roles;
+  }
+
+  deleteUser(user: User) {
+    this.confirmService
+      .confirm(
+        'Confirm user deletion',
+        'Are you sure you want to delete ' + user.username + '?'
+      )
+      .subscribe((result) => {
+        this.adminService.deleteUser(user.username).subscribe(() => {
+          this.users.splice(
+            this.users.findIndex((u) => u.username === user.username)
+          );
+        });
+      });
   }
 }

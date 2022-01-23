@@ -5,3 +5,11 @@
 .btn-info:hover {
     background-color: #369;
 }
+
+.btn-danger {
+    background-color: #da292e;
+}
+
+.btn-danger:hover {
+    background-color: #b92327;
+}
