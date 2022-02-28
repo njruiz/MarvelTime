@@ -33,6 +33,10 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import { CharacterManagementComponent } from './admin/character-management/character-management.component';
+import { CreateCharacterModalComponent } from './modals/create-character-modal/create-character-modal.component';
+import { CharacterCardComponent } from './characters/character-card/character-card.component';
+import { CharacterDetailComponent } from './characters/character-detail/character-detail.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +63,10 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     PhotoManagementComponent,
     RolesModalComponent,
     ConfirmDialogComponent,
+    CharacterManagementComponent,
+    CreateCharacterModalComponent,
+    CharacterCardComponent,
+    CharacterDetailComponent,
   ],
   imports: [
     BrowserModule,

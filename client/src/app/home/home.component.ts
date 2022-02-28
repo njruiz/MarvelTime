@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Character } from '../_models/character';
 import { Member } from '../_models/member';
 import { Pagination } from '../_models/pagination';
 import { User } from '../_models/user';
 import { UserParams } from '../_models/userParams';
 import { AccountService } from '../_services/account.service';
+import { CharacterService } from '../_services/character.service';
 import { MembersService } from '../_services/members.service';
 
 @Component({
@@ -12,6 +15,8 @@ import { MembersService } from '../_services/members.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  characters: Character[];
+  characters$: Observable<Character[]>;
   members: Member[];
   pagination: Pagination;
   userParams: UserParams;
@@ -20,23 +25,14 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public accountService: AccountService,
-    private memberService: MembersService
+    private memberService: MembersService,
+    private characterService: CharacterService
   ) {
     this.userParams = this.memberService.getUserParams();
   }
 
   ngOnInit(): void {
-    this.loadMembers();
-  }
-
-  loadMembers() {
-    if (this.memberService.user != null) {
-      this.memberService.setUserParams(this.userParams);
-      this.memberService.getMembers(this.userParams).subscribe((response) => {
-        this.members = response.result;
-        this.pagination = response.pagination;
-      });
-    }
+    this.characters$ = this.characterService.getCharacters();
   }
 
   registerToggle() {
