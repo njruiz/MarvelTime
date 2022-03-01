@@ -18,11 +18,7 @@
     </div>
 
     <ng-template #loggedIn>
-        <div class="row justify-content-center">
-            <h1 style="text-align: center; margin-bottom: 25px;">Find Your Favorite Marvel Characters!</h1>
-            <div *ngFor="let character of characters$ | async" class="col-2 text-center">
-                <app-character-card [character]="character"></app-character-card>
-            </div>
-        </div>
+        <h1 style="text-align: center; margin-bottom: 25px;">Find Your Favorite Marvel Characters!</h1>
+        <app-character-list></app-character-list>
     </ng-template>
 </div>

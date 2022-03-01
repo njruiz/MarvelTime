@@ -31,5 +31,17 @@ namespace API.Data
                 .ProjectTo<CharacterDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
+
+        public async Task<Character> GetCharacterAsync(string characterId)
+        {
+            return await _context.Characters
+            .Include(p => p.Photos)
+            .SingleOrDefaultAsync(x => x.CharacterId == characterId);
+        }
+
+        public void Update(Character character)
+        {
+            _context.Entry(character).State = EntityState.Modified;
+        }
     }
 }

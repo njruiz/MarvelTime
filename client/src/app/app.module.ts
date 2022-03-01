@@ -37,6 +37,9 @@ import { CharacterManagementComponent } from './admin/character-management/chara
 import { CreateCharacterModalComponent } from './modals/create-character-modal/create-character-modal.component';
 import { CharacterCardComponent } from './characters/character-card/character-card.component';
 import { CharacterDetailComponent } from './characters/character-detail/character-detail.component';
+import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
+import { CharacterPhotoEditorComponent } from './characters/character-photo-editor/character-photo-editor.component';
+import { CharacterListComponent } from './characters/character-list/character-list.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,9 @@ import { CharacterDetailComponent } from './characters/character-detail/characte
     CreateCharacterModalComponent,
     CharacterCardComponent,
     CharacterDetailComponent,
+    CharacterEditComponent,
+    CharacterPhotoEditorComponent,
+    CharacterListComponent,
   ],
   imports: [
     BrowserModule,

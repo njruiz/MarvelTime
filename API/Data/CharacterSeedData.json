@@ -12,8 +12,9 @@
     "PlayedBy": "Scarlett Johannson",
     "Photos": [
       {
-        "Url": "https://randomuser.me/api/portraits/women/13.jpg",
-        "IsMain": true
+        "Url": "https://res.cloudinary.com/ruiznj/image/upload/v1646060459/dvtmz5xt4alhjqven1uq.jpg",
+        "IsMain": true,
+        "publicId": "dvtmz5xt4alhjqven1uq"
       }
     ]
   },
@@ -27,11 +28,12 @@
     "SourceOfPower": "Ea incididunt anim magna cillum ut.",
     "McuStory": "Dolore culpa consequat sit officia ut dolor Lorem est irure elit. Qui adipisicing fugiat voluptate id veniam. Elit ea aliqua ea ad anim occaecat officia nostrud id cillum. Eiusmod deserunt magna sunt Lorem ullamco exercitation tempor commodo. Duis qui aliquip sit magna exercitation labore esse.\r\n",
     "PlaceOfOrigin": "Manhattan, New York",
-    "PlayedBy": "Mullen Ortiz",
+    "PlayedBy": "Robert Downey Jr.",
     "Photos": [
       {
-        "Url": "https://randomuser.me/api/portraits/men/32.jpg",
-        "IsMain": true
+        "Url": "https://res.cloudinary.com/ruiznj/image/upload/v1646060735/ptelwgjewexeps36exxz.jpg",
+        "IsMain": true,
+        "publicId": "ptelwgjewexeps36exxz"
       }
     ]
   },
@@ -48,8 +50,9 @@
     "PlayedBy": "Jeremy Renner",
     "Photos": [
       {
-        "Url": "https://randomuser.me/api/portraits/men/69.jpg",
-        "IsMain": true
+        "Url": "https://res.cloudinary.com/ruiznj/image/upload/v1646121351/jvqnxylzmsiauf4mtagw.jpg",
+        "IsMain": true,
+        "publicId": "jvqnxylzmsiauf4mtagw"
       }
     ]
   }

@@ -23,6 +23,7 @@ namespace API.Helpers
                     src.Photos.FirstOrDefault(x => x.IsMain).Url));
             CreateMap<CreateCharacterDto, Character>();
             CreateMap<PhotoCharacter, PhotoCharacterDto>();
+            CreateMap<CharacterUpdateDto, Character>();
 
             CreateMap<Message, MessageDto>()
                 .ForMember(dest => dest.SenderPhotoUrl, opt => opt.MapFrom(src =>

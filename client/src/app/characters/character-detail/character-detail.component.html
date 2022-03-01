@@ -1,40 +1,54 @@
 <div class="row">
-    <div class="col-4">
-        <div class="card">
-            <img src="{{character.photoUrl || './assets/user.png'}}" alt="{{character.characterName}}"
-                class="card-img-top img-thumbnail">
-            <div class="card-body">
-                <h2 class="text-center">{{character.characterName}}</h2>
-                
-                <div>
-                    <strong>Real Name: </strong><span>{{character.realName}}</span>
-                </div>
-                <div>
-                    <strong>Place of Origin: </strong><span>{{character.placeOfOrigin}}</span>
-                </div>
-                <div>
-                    <strong>Birth Date: </strong><span>{{character.dateOfBirth | date: 'MMMM dd, yyyy'}}</span>
-                </div>
-                <div>
-                    <strong>Portrayed By: </strong><span>{{character.playedBy}}</span>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="btn-group d-flex">
-                    <button class="btn btn-primary">Like</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="col-4">
+    <div class="card">
+      <img
+        src="{{ character.photoUrl || './assets/user.png' }}"
+        alt="{{ character.characterName }}"
+        class="card-img-top img-thumbnail"
+      />
+      <div class="card-body">
+        <h2 class="text-center">{{ character.characterName }}</h2>
 
-    <div class="col-8">
-        <tabset class="member-tabset" #memberTabs>
-            <tab heading='About {{character.characterName}}'>
-                <h4>Source of Abilities</h4>
-                <p>{{character.sourceOfPower}}</p>
-                <h4>MCU Story</h4>
-                <p>{{character.mcuStory}}</p>
-            </tab>
-        </tabset>
+        <div>
+          <strong>Real Name: </strong>
+          <p>{{ character.realName }}</p>
+        </div>
+        <div>
+          <strong>Place of Origin: </strong>
+          <p>{{ character.placeOfOrigin }}</p>
+        </div>
+        <div>
+          <strong>Birth Date: </strong>
+          <p>{{ character.dateOfBirth | date: "MMMM dd, yyyy" }}</p>
+        </div>
+        <div>
+          <strong>Portrayed By: </strong>
+          <p>{{ character.playedBy }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="col-8">
+    <tabset class="member-tabset" #characterTabs>
+      <tab heading="About {{ character.characterName }}">
+        <h4>Source of Abilities</h4>
+        <p>{{ character.sourceOfPower }}</p>
+        <h4>MCU Story</h4>
+        <p>{{ character.mcuStory }}</p>
+      </tab>
+      <tab heading="Photos">
+        <ngx-gallery
+          [options]="galleryOptions"
+          [images]="galleryImages"
+          style="display: inline-block; margin-bottom: 20px"
+        ></ngx-gallery>
+      </tab>
+    </tabset>
+  </div>
 </div>

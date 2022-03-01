@@ -10,8 +10,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -29,8 +27,6 @@ import { MatInputModule } from '@angular/material/input';
     ButtonsModule.forRoot(),
     TimeagoModule.forRoot(),
     ModalModule.forRoot(),
-    MatFormFieldModule,
-    MatInputModule,
   ],
   exports: [
     BsDropdownModule,
@@ -43,8 +39,6 @@ import { MatInputModule } from '@angular/material/input';
     ButtonsModule,
     TimeagoModule,
     ModalModule,
-    MatFormFieldModule,
-    MatInputModule,
   ],
 })
 export class SharedModule {}
