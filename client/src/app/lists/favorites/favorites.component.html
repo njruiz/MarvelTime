@@ -1,0 +1,31 @@
+<div class="container mt-3">
+  <div class="row mt-3 justify-content-center" *ngIf="characters.length > 0; else NoFavorite">
+    <div class="col-2" *ngFor="let character of characters">
+      <app-character-card [character]="character"></app-character-card>
+    </div>
+  </div>
+
+  <div
+    class="d-flex justify-content-center"
+    *ngIf="pagination && characters.length > 0"
+  >
+    <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage"
+      (pageChanged)="pageChanged($event)"
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;"
+    >
+    </pagination>
+  </div>
+
+  <ng-template #NoFavorite>
+    <h1 style="text-align: center; margin-bottom: 25px">
+      You don't have favorite characters
+    </h1>
+  </ng-template>
+</div>

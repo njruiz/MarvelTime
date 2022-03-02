@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SharedModule } from './_modules/shared.module';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -40,6 +39,8 @@ import { CharacterDetailComponent } from './characters/character-detail/characte
 import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
 import { CharacterPhotoEditorComponent } from './characters/character-photo-editor/character-photo-editor.component';
 import { CharacterListComponent } from './characters/character-list/character-list.component';
+import { ConnectionsComponent } from './lists/connections/connections.component';
+import { FavoritesComponent } from './lists/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,6 @@ import { CharacterListComponent } from './characters/character-list/character-li
     RegisterComponent,
     MemberListComponent,
     MemberDetailComponent,
-    ListsComponent,
     MessagesComponent,
     TestErrorsComponent,
     NotFoundComponent,
@@ -73,6 +73,8 @@ import { CharacterListComponent } from './characters/character-list/character-li
     CharacterEditComponent,
     CharacterPhotoEditorComponent,
     CharacterListComponent,
+    ConnectionsComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,

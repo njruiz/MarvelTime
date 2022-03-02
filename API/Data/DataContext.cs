@@ -18,6 +18,7 @@ namespace API.Data
         }
 
         public DbSet<UserLike> Likes { get; set; }
+        public DbSet<CharacterLike> CharacterLikes { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
@@ -54,6 +55,15 @@ namespace API.Data
                 .HasOne(s => s.LikedUser)
                 .WithMany(l => l.LikedByUser)
                 .HasForeignKey(s => s.LikedUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<CharacterLike>()
+                .HasKey(k => new { k.SourceUserId, k.LikedCharacterId });
+
+            builder.Entity<CharacterLike>()
+                .HasOne(s => s.SourceUser)
+                .WithMany(l => l.LikedCharacters)
+                .HasForeignKey(s => s.SourceUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Message>()

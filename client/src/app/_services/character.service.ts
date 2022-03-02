@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Character } from '../_models/character';
+import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,20 @@ export class CharacterService {
   deletePhoto(photoId: number, characterId: string) {
     return this.http.delete(
       this.baseUrl + 'characters/' + characterId + '/delete-photo/' + photoId
+    );
+  }
+
+  addLike(characterId: string) {
+    return this.http.post(this.baseUrl + 'likes/characters/' + characterId, {});
+  }
+
+  getLikes(predicate: string, pageNumber, pageSize) {
+    let params = getPaginationHeaders(pageNumber, pageSize);
+    params = params.append('predicate', predicate);
+    return getPaginatedResult<Partial<Character[]>>(
+      this.baseUrl + 'likes/characters',
+      params,
+      this.http
     );
   }
 }

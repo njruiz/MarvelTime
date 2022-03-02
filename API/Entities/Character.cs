@@ -13,6 +13,7 @@ namespace API.Entities
         public string McuStory { get; set; }
         public string PlaceOfOrigin { get; set; }
         public string PlayedBy { get; set; }
+        public ICollection<CharacterLike> LikedCharacters { get; set; }
         public ICollection<PhotoCharacter> Photos { get; set; }
     }
 }

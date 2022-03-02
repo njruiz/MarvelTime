@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Character } from 'src/app/_models/character';
+import { CharacterService } from 'src/app/_services/character.service';
 
 @Component({
   selector: 'app-character-card',
@@ -9,7 +11,16 @@ import { Character } from 'src/app/_models/character';
 export class CharacterCardComponent implements OnInit {
   @Input() character: Character;
 
-  constructor() {}
+  constructor(
+    private characterService: CharacterService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
+
+  addLike(character: Character) {
+    this.characterService.addLike(character.characterId).subscribe(() => {
+      this.toastr.success('You have liked ' + character.characterName);
+    });
+  }
 }

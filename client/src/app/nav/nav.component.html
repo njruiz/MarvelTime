@@ -4,13 +4,13 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <ng-container *ngIf="accountService.currentUser$ | async">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/members" routerLinkActive="active">Favorites</a>
+              <a class="nav-link" routerLink="/favorites" routerLinkActive="active">Favorites</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/members" routerLinkActive="active">Fans</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/lists" routerLinkActive="active">Followers</a>
+              <a class="nav-link" routerLink="/connections" routerLinkActive="active">Connections</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>

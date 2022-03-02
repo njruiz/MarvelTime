@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
@@ -41,7 +37,8 @@ namespace API.Data
                 users = likes.Select(like => like.SourceUser);
             }
 
-            var likedUsers = users.Select(user => new LikeDto {
+            var likedUsers = users.Select(user => new LikeDto
+            {
                 Username = user.UserName,
                 KnownAs = user.KnownAs,
                 Age = user.DateOfBirth.CalculateAge(),
@@ -58,6 +55,51 @@ namespace API.Data
             return await _context.Users
                 .Include(x => x.LikedUsers)
                 .FirstOrDefaultAsync(x => x.Id == userId);
+        }
+
+        public async Task<AppUser> GetUserWithCharacterLikes(int userId)
+        {
+            return await _context.Users
+                .Include(x => x.LikedCharacters)
+                .FirstOrDefaultAsync(x => x.Id == userId);
+        }
+
+        public async Task<CharacterLike> GetCharacterLike(int sourceUserId, int likedCharacterId)
+        {
+            return await _context.CharacterLikes.FindAsync(sourceUserId, likedCharacterId);
+        }
+
+        public async Task<Character> GetCharacterWithLikes(string characterId)
+        {
+            return await _context.Characters
+                .Include(x => x.LikedCharacters)
+                .FirstOrDefaultAsync(x => x.CharacterId == characterId);
+        }
+
+        public async Task<PagedList<LikeCharacterDto>> GetCharacterLikes(LikesCharacterParams likesParams)
+        {
+            var characters = _context.Characters.OrderBy(c => c.CharacterId).AsQueryable();
+            var likes = _context.CharacterLikes.AsQueryable();
+
+            if (likesParams.Predicate == "liked")
+            {
+                likes = likes.Where(like => like.SourceUserId == likesParams.UserId);
+                characters = likes.Select(like => like.LikedCharacter);
+            }
+
+            var likedCharacters = characters.Select(character => new LikeCharacterDto
+            {
+                CharacterId = character.CharacterId,
+                CharacterName = character.CharacterName,
+                RealName = character.RealName,
+                Role = character.Role,
+                Gender = character.Gender,
+                PlaceOfOrigin = character.PlaceOfOrigin,
+                PlayedBy = character.PlayedBy,
+                PhotoUrl = character.Photos.FirstOrDefault(p => p.IsMain).Url
+            });
+
+            return await PagedList<LikeCharacterDto>.CreateAsync(likedCharacters, likesParams.PageNumber, likesParams.PageSize);
         }
     }
 }
