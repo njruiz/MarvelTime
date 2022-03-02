@@ -11,5 +11,10 @@
                 <app-photo-management></app-photo-management>
             </div>
         </tab>
+        <tab heading="Character management" *appHasRole="['Admin', 'Moderator']">
+            <div class="container row justify-content-center">
+                <app-character-management></app-character-management>
+            </div>
+        </tab>
     </tabset>
 </div>

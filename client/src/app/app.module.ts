@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SharedModule } from './_modules/shared.module';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -33,6 +32,15 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import { CharacterManagementComponent } from './admin/character-management/character-management.component';
+import { CreateCharacterModalComponent } from './modals/create-character-modal/create-character-modal.component';
+import { CharacterCardComponent } from './characters/character-card/character-card.component';
+import { CharacterDetailComponent } from './characters/character-detail/character-detail.component';
+import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
+import { CharacterPhotoEditorComponent } from './characters/character-photo-editor/character-photo-editor.component';
+import { CharacterListComponent } from './characters/character-list/character-list.component';
+import { ConnectionsComponent } from './lists/connections/connections.component';
+import { FavoritesComponent } from './lists/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +50,6 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     RegisterComponent,
     MemberListComponent,
     MemberDetailComponent,
-    ListsComponent,
     MessagesComponent,
     TestErrorsComponent,
     NotFoundComponent,
@@ -59,6 +66,15 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     PhotoManagementComponent,
     RolesModalComponent,
     ConfirmDialogComponent,
+    CharacterManagementComponent,
+    CreateCharacterModalComponent,
+    CharacterCardComponent,
+    CharacterDetailComponent,
+    CharacterEditComponent,
+    CharacterPhotoEditorComponent,
+    CharacterListComponent,
+    ConnectionsComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,

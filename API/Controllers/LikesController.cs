@@ -45,7 +45,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes([FromQuery]LikesParams likesParams)
+        public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
         {
             likesParams.UserId = User.GetUserId();
             var users = await _unitOfWork.LikesRepository.GetUserLikes(likesParams);
@@ -53,6 +53,43 @@ namespace API.Controllers
             Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
 
             return Ok(users);
+        }
+
+        [HttpPost("characters/{characterId}")]
+        public async Task<ActionResult> AddCharacterLike(string characterId)
+        {
+            var sourceUserId = User.GetUserId();
+            var likedCharacter = await _unitOfWork.CharacterRepository.GetCharacterByCharacterIdAsync(characterId);
+            var sourceUser = await _unitOfWork.LikesRepository.GetUserWithCharacterLikes(sourceUserId);
+
+            if (likedCharacter == null) return NotFound();
+
+            var characterLike = await _unitOfWork.LikesRepository.GetCharacterLike(sourceUserId, likedCharacter.Id);
+
+            if (characterLike != null) return BadRequest("You already like this character");
+
+            characterLike = new CharacterLike
+            {
+                SourceUserId = sourceUserId,
+                LikedCharacterId = likedCharacter.Id
+            };
+
+            sourceUser.LikedCharacters.Add(characterLike);
+
+            if (await _unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Failed to like character");
+        }
+
+        [HttpGet("characters")]
+        public async Task<ActionResult<IEnumerable<LikeCharacterDto>>> GetCharacterLikes([FromQuery] LikesCharacterParams likesParams)
+        {
+            likesParams.UserId = User.GetUserId();
+            var characters = await _unitOfWork.LikesRepository.GetCharacterLikes(likesParams);
+
+            Response.AddPaginationHeader(characters.CurrentPage, characters.PageSize, characters.TotalCount, characters.TotalPages);
+
+            return Ok(characters);
         }
     }
 }

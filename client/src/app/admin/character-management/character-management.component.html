@@ -1,0 +1,35 @@
+<div class="flex-start">
+  <button class="btn btn-info mb-3" (click)="openCreateCharacterModal()">
+    Add Character
+  </button>
+</div>
+
+<div class="row">
+  <table class="table">
+    <tr>
+      <th style="width: 30%">Character Name</th>
+      <th style="width: 40%">Role</th>
+      <th style="width: 30%"></th>
+    </tr>
+    <tr *ngFor="let character of characters">
+      <td>{{ character.characterName }}</td>
+      <td>{{ character.role }}</td>
+      <td>
+        <button
+          [routerLink]="['/character/edit', character.characterId]"
+          routerLinkActive="router-link-active"
+          class="btn btn-info"
+        >
+          Edit
+        </button>
+        <button
+          (click)="deleteUser(user)"
+          class="btn btn-danger"
+          style="margin-left: 5px"
+        >
+          Delete Character
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

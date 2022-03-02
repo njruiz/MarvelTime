@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
@@ -10,10 +9,13 @@ import { PresenceService } from './_services/presence.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'The Marvel Time App';
+  title = 'The MCU Network';
   users: any;
 
-  constructor(private accountService: AccountService, private presence: PresenceService) {}
+  constructor(
+    private accountService: AccountService,
+    private presence: PresenceService
+  ) {}
 
   ngOnInit() {
     this.setCurrentUser();
@@ -24,6 +26,6 @@ export class AppComponent implements OnInit {
     if (user) {
       this.accountService.setCurrentUser(user);
       this.presence.createHubConnection(user);
-    }  
+    }
   }
 }

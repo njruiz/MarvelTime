@@ -1,0 +1,76 @@
+<div class="row" *ngIf="character">
+  <div class="col-4 text-center">
+    <h1>Edit character</h1>
+  </div>
+  <div class="col-8">
+    <div class="alert alert-info" *ngIf="editForm.dirty">
+      <strong>Information: </strong> You have made changes. Any unsaved changes
+      will be lost.
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <img
+        src="{{ character.photoUrl || './assets/user.png' }}"
+        alt="{{ character.characterName }}"
+        class="card-img-top img-thumbnail"
+      />
+      <div class="card-body">
+        <h2 class="text-center">{{ character.characterName }}</h2>
+
+        <div>
+          <strong>Real Name: </strong>
+          <p>{{ character.realName }}</p>
+        </div>
+        <div>
+          <strong>Place of Origin: </strong>
+          <p>{{ character.placeOfOrigin }}</p>
+        </div>
+        <div>
+          <strong>Birth Date: </strong>
+          <p>{{ character.dateOfBirth | date: "MMMM dd, yyyy" }}</p>
+        </div>
+        <div>
+          <strong>Portrayed By: </strong>
+          <p>{{ character.playedBy }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button
+          [disabled]="!editForm.dirty"
+          form="editForm"
+          type="submit"
+          class="btn btn-success btn-block"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <tabset class="member-tabset">
+      <tab heading="About {{ character.characterName }}">
+        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateCharacter()">
+          <h4>Source of Abilities</h4>
+          <textarea
+            class="form-control"
+            [(ngModel)]="character.sourceOfPower"
+            name="sourceOfPower"
+            rows="6"
+          ></textarea>
+          <h4 class="mt-2">MCU Story</h4>
+          <textarea
+            class="form-control"
+            [(ngModel)]="character.mcuStory"
+            name="mcuStory"
+            rows="6"
+          ></textarea>
+        </form>
+      </tab>
+      <tab heading="Edit Photos">
+        <app-character-photo-editor></app-character-photo-editor>
+      </tab>
+    </tabset>
+  </div>
+</div>

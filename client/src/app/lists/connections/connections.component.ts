@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Member } from '../_models/member';
-import { Pagination } from '../_models/pagination';
-import { MembersService } from '../_services/members.service';
+import { Member } from 'src/app/_models/member';
+import { Pagination } from 'src/app/_models/pagination';
+import { MembersService } from 'src/app/_services/members.service';
 
 @Component({
-  selector: 'app-lists',
-  templateUrl: './lists.component.html',
-  styleUrls: ['./lists.component.css'],
+  selector: 'app-connections',
+  templateUrl: './connections.component.html',
+  styleUrls: ['./connections.component.css'],
 })
-export class ListsComponent implements OnInit {
+export class ConnectionsComponent implements OnInit {
   members: Partial<Member[]>;
   predicate = 'liked';
   pageNumber = 1;
@@ -26,7 +26,7 @@ export class ListsComponent implements OnInit {
       .getLikes(this.predicate, this.pageNumber, this.pageSize)
       .subscribe((response) => {
         this.members = response.result;
-        this.pagination = response.pagination;        
+        this.pagination = response.pagination;
       });
   }
 

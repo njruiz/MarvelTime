@@ -163,6 +163,64 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
+            modelBuilder.Entity("API.Entities.Character", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CharacterId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CharacterName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("text");
+
+                    b.Property<string>("McuStory")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PlaceOfOrigin")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PlayedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RealName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SourceOfPower")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Characters");
+                });
+
+            modelBuilder.Entity("API.Entities.CharacterLike", b =>
+                {
+                    b.Property<int>("SourceUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("LikedCharacterId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SourceUserId", "LikedCharacterId");
+
+                    b.HasIndex("LikedCharacterId");
+
+                    b.ToTable("CharacterLikes");
+                });
+
             modelBuilder.Entity("API.Entities.Connection", b =>
                 {
                     b.Property<string>("ConnectionId")
@@ -263,6 +321,33 @@ namespace API.Data.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("API.Entities.PhotoCharacter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("Photos_Character");
                 });
 
             modelBuilder.Entity("API.Entities.UserLike", b =>
@@ -387,6 +472,25 @@ namespace API.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("API.Entities.CharacterLike", b =>
+                {
+                    b.HasOne("API.Entities.Character", "LikedCharacter")
+                        .WithMany()
+                        .HasForeignKey("LikedCharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", "SourceUser")
+                        .WithMany("LikedCharacters")
+                        .HasForeignKey("SourceUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LikedCharacter");
+
+                    b.Navigation("SourceUser");
+                });
+
             modelBuilder.Entity("API.Entities.Connection", b =>
                 {
                     b.HasOne("API.Entities.Group", null)
@@ -422,6 +526,15 @@ namespace API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("API.Entities.PhotoCharacter", b =>
+                {
+                    b.HasOne("API.Entities.Character", null)
+                        .WithMany("Photos")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("API.Entities.UserLike", b =>
@@ -488,6 +601,8 @@ namespace API.Data.Migrations
                 {
                     b.Navigation("LikedByUser");
 
+                    b.Navigation("LikedCharacters");
+
                     b.Navigation("LikedUsers");
 
                     b.Navigation("MessagesReceived");
@@ -497,6 +612,11 @@ namespace API.Data.Migrations
                     b.Navigation("Photos");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.Character", b =>
+                {
+                    b.Navigation("Photos");
                 });
 
             modelBuilder.Entity("API.Entities.Group", b =>

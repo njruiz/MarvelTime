@@ -1,0 +1,51 @@
+<div class="modal-header" style="justify-content: center;">
+    <h2 class="text-center text-primary" style="margin-top: 15px;">Add New Character</h2>
+    <hr>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="characterForm" (ngSubmit)="characterForm.valid && addCharacter()" autocomplete="off">
+        <div class="form-group">
+            <label class="control-label" style="margin-right: 10px;">Gender: </label>
+            <label class="radio-inline">
+                <input type="radio" value="male" formControlName='gender'> Male
+            </label>
+            <label class="radio-inline">
+                <input class="ml-3" type="radio" value="female" formControlName='gender'> Female
+            </label>
+        </div>
+
+        <app-text-input [formControl]='characterForm.controls["characterName"]' [label]='"Character Name"'>
+        </app-text-input>
+        <app-text-input [formControl]='characterForm.controls["realName"]' [label]='"Real Name"'></app-text-input>
+        <app-text-input [formControl]='characterForm.controls["playedBy"]' [label]='"Played By"'></app-text-input>
+        <app-date-input [formControl]='characterForm.controls["dateOfBirth"]' [label]='"Date Of Birth"'>
+        </app-date-input>
+        <app-text-input [formControl]='characterForm.controls["placeOfOrigin"]' [label]='"Place of Origin"'>
+        </app-text-input>
+
+        <div class="group-gap">
+            <div class="d-block my-3">
+                <div class="mb-3">
+                    <select class="custom-select" (change)="changeRole($event)" formControlName="role">
+                        <option value="">Role</option>
+                        <option *ngFor="let role of Roles" [ngValue]="role">{{role}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="validationErrors.length > 0">
+            <ul class="text-danger">
+                <li *ngFor="let error of validationErrors">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="form-group text-center">
+            <button [disabled]="!characterForm.valid" class="btn btn-success mr-2" type="submit">Add Character</button>
+            <button class="btn btn-primary mr-2" type="button" (click)="bsModalRef.hide()">Cancel</button>
+        </div>
+    </form>
+</div>

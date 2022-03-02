@@ -1,0 +1,59 @@
+[
+  {
+    "CharacterId": "blackwidow",
+    "CharacterName": "Black Widow",
+    "Gender": "female",
+    "DateOfBirth": "1984-12-03",
+    "RealName": "Natalia Alianovna (Natasha) Romanoff",
+    "Role": "Superhero",
+    "SourceOfPower": "Lorem quis enim minim voluptate reprehenderit mollit sunt excepteur laboris enim minim aliquip ad.",
+    "McuStory": "Laboris tempor ex non duis sit ad ipsum. Dolore ex veniam nostrud in. Est exercitation incididunt dolor occaecat laborum duis officia cillum do. Nisi amet sit consequat sint reprehenderit. Non sunt sint officia amet dolor id voluptate aliqua sit culpa amet aliqua excepteur cupidatat. Culpa fugiat id ut irure incididunt aliqua.\r\n",
+    "PlaceOfOrigin": "Soviet Union",
+    "PlayedBy": "Scarlett Johannson",
+    "Photos": [
+      {
+        "Url": "https://res.cloudinary.com/ruiznj/image/upload/v1646060459/dvtmz5xt4alhjqven1uq.jpg",
+        "IsMain": true,
+        "publicId": "dvtmz5xt4alhjqven1uq"
+      }
+    ]
+  },
+  {
+    "CharacterId": "ironman",
+    "CharacterName": "Iron Man",
+    "Gender": "male",
+    "DateOfBirth": "1970-05-29",
+    "RealName": "Anthony Edward (Tony) Stark",
+    "Role": "Superhero",
+    "SourceOfPower": "Ea incididunt anim magna cillum ut.",
+    "McuStory": "Dolore culpa consequat sit officia ut dolor Lorem est irure elit. Qui adipisicing fugiat voluptate id veniam. Elit ea aliqua ea ad anim occaecat officia nostrud id cillum. Eiusmod deserunt magna sunt Lorem ullamco exercitation tempor commodo. Duis qui aliquip sit magna exercitation labore esse.\r\n",
+    "PlaceOfOrigin": "Manhattan, New York",
+    "PlayedBy": "Robert Downey Jr.",
+    "Photos": [
+      {
+        "Url": "https://res.cloudinary.com/ruiznj/image/upload/v1646060735/ptelwgjewexeps36exxz.jpg",
+        "IsMain": true,
+        "publicId": "ptelwgjewexeps36exxz"
+      }
+    ]
+  },
+  {
+    "CharacterId": "hawkeye",
+    "CharacterName": "Hawkeye",
+    "Gender": "male",
+    "DateOfBirth": "1971-01-07",
+    "RealName": "Clinton Francis Barton",
+    "Role": "Superhero",
+    "SourceOfPower": "Culpa aliquip est sit eiusmod duis sint Lorem incididunt labore labore qui sit quis.",
+    "McuStory": "In esse adipisicing cupidatat anim in exercitation magna labore nisi proident occaecat ut elit eu. Cillum officia anim et duis cillum. Laboris elit excepteur ullamco sit duis ut ea eu esse reprehenderit est. Cillum non aliquip ea labore veniam laboris. Pariatur labore incididunt sit elit excepteur. Magna consequat fugiat commodo nostrud consectetur ea non quis. Dolore adipisicing voluptate occaecat culpa consectetur irure irure dolor est tempor.\r\n",
+    "PlaceOfOrigin": "Waverly, Iowa",
+    "PlayedBy": "Jeremy Renner",
+    "Photos": [
+      {
+        "Url": "https://res.cloudinary.com/ruiznj/image/upload/v1646121351/jvqnxylzmsiauf4mtagw.jpg",
+        "IsMain": true,
+        "publicId": "jvqnxylzmsiauf4mtagw"
+      }
+    ]
+  }
+]
