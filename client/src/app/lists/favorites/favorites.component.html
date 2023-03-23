@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <div class="row mt-3 justify-content-center" *ngIf="characters.length > 0; else NoFavorite">
+  <div class="row mt-3 justify-content-center" *ngIf="characters?.length > 0; else NoFavorite">
     <div class="col-2" *ngFor="let character of characters">
       <app-character-card [character]="character"></app-character-card>
     </div>

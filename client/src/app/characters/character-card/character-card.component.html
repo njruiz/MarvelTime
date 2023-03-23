@@ -5,8 +5,12 @@
             <li class="list-inline-item"><button routerLink="/characters/{{character.characterId}}"
                     class="btn btn-primary">
                     <i class="fa fa-user"></i></button></li>
-            <li class="list-inline-item"><button (click)="addLike(character)" class="btn btn-primary">
-                    <i class="fa fa-heart"></i></button></li>
+            <li class="list-inline-item">
+                <button (click)="addLike(character)" class="btn btn-primary">
+                    <i *ngIf="favoriteCharacter" class="fa fa-heart"></i>
+                    <i *ngIf="!favoriteCharacter" class="fa fa-heart-o"></i>
+                </button>
+            </li>
         </ul>
     </div>
     <div class="card-body p-1">

@@ -19,7 +19,6 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLikes();
-    console.log('characters: ' + this.characters);
   }
 
   loadLikes() {

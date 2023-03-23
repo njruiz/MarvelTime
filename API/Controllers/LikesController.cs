@@ -61,22 +61,27 @@ namespace API.Controllers
             var sourceUserId = User.GetUserId();
             var likedCharacter = await _unitOfWork.CharacterRepository.GetCharacterByCharacterIdAsync(characterId);
             var sourceUser = await _unitOfWork.LikesRepository.GetUserWithCharacterLikes(sourceUserId);
-
+            var like_status = false;
             if (likedCharacter == null) return NotFound();
 
             var characterLike = await _unitOfWork.LikesRepository.GetCharacterLike(sourceUserId, likedCharacter.Id);
 
-            if (characterLike != null) return BadRequest("You already like this character");
-
-            characterLike = new CharacterLike
+            if (characterLike != null)
             {
-                SourceUserId = sourceUserId,
-                LikedCharacterId = likedCharacter.Id
-            };
-
-            sourceUser.LikedCharacters.Add(characterLike);
-
-            if (await _unitOfWork.Complete()) return Ok();
+                sourceUser.LikedCharacters.Remove(characterLike);
+                if (await _unitOfWork.Complete()) return Ok(new {like_status = like_status});
+            } 
+            else
+            {
+                characterLike = new CharacterLike
+                {
+                    SourceUserId = sourceUserId,
+                    LikedCharacterId = likedCharacter.Id
+                };
+                like_status = true;
+                sourceUser.LikedCharacters.Add(characterLike);
+                if (await _unitOfWork.Complete()) return Ok(new {like_status = like_status});
+            } //return BadRequest("You already like this character");
 
             return BadRequest("Failed to like character");
         }
