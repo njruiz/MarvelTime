@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { CharacterService } from 'src/app/_services/character.service';
@@ -10,14 +10,14 @@ import { CharacterService } from 'src/app/_services/character.service';
   styleUrls: ['./create-character-modal.component.css'],
 })
 export class CreateCharacterModalComponent implements OnInit {
-  characterForm: FormGroup;
+  characterForm: UntypedFormGroup;
   // Roles
   Roles: any = ['Superhero', 'Villain', 'Civilian', 'Neutral'];
   validationErrors: string[] = [];
 
   constructor(
     private characterService: CharacterService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public bsModalRef: BsModalRef,
     private router: Router
   ) {}
