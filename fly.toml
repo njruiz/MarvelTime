@@ -13,7 +13,7 @@ processes = []
   CloudinarySettings__ApiKey="498714814261394"
 
 [build]
-  image = "nruizjr/themarvelnetwork:latest"
+  image = "nruizjr/themcunetwork:latest"
 
 [[services]]
   internal_port = 8080
