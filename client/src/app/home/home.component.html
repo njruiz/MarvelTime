@@ -1,24 +1,33 @@
 <div class="container mt-5">
-    <div *ngIf="(accountService.currentUser$ | async) === null; else loggedIn">
-        <div *ngIf="!registerMode" style='text-align: center;'>
-            <h1>Find Your Favorite Marvel Characters!</h1>
-            <p class="lead">Come on in to view your favorite MCU characters... And interact with fellow fans.</p> 
-            <div class="text-center">
-                <button (click)="registerToggle()" class="btn btn-primary btn-lg mr-2">Register</button>
-            </div>
-        </div>
+  <div *ngIf="(accountService.currentUser$ | async) === null; else loggedIn">
+    <div *ngIf="!registerMode" style="text-align: center">
+      <h1>Find Your Favorite Marvel Characters!</h1>
+      <p class="lead">
+        Come on in to view your favorite MCU characters... And interact with
+        fellow fans.
+      </p>
+      <div class="text-center">
+        <button (click)="registerToggle()" class="btn btn-primary btn-lg me-2">
+          Register
+        </button>
+      </div>
     </div>
+  </div>
 
-    <div *ngIf="registerMode" class="container">
-        <div class="row justify-content-center">
-            <div class="col-4">
-                <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
-            </div>
-        </div>
+  <div *ngIf="registerMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <app-register
+          (cancelRegister)="cancelRegisterMode($event)"
+        ></app-register>
+      </div>
     </div>
+  </div>
 
-    <ng-template #loggedIn>
-        <h1 style="text-align: center; margin-bottom: 25px;">Find Your Favorite Marvel Characters!</h1>
-        <app-character-list></app-character-list>
-    </ng-template>
+  <ng-template #loggedIn>
+    <h1 style="text-align: center; margin-bottom: 25px">
+      Find Your Favorite Marvel Characters!
+    </h1>
+    <app-character-list></app-character-list>
+  </ng-template>
 </div>
