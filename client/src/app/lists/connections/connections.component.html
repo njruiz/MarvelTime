@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <div class="row" style="width: 30%">
+  <div class="d-flex" style="width: 30%">
     <div class="btn-group" name="predicate">
       <button
         class="btn btn-primary"
@@ -20,13 +20,19 @@
     </div>
   </div>
 
-  <div class="row mt-3 justify-content-center" *ngIf="members?.length > 0; else NoConnections">
+  <div
+    class="row mt-3 justify-content-center"
+    *ngIf="members?.length > 0; else NoConnections"
+  >
     <div class="col-2" *ngFor="let member of members">
       <app-member-card [member]="member"></app-member-card>
     </div>
   </div>
 
-  <div class="d-flex justify-content-center" *ngIf="(pagination) && members.length > 0">
+  <div
+    class="d-flex justify-content-center"
+    *ngIf="pagination && members.length > 0"
+  >
     <pagination
       [boundaryLinks]="true"
       [totalItems]="pagination.totalItems"
@@ -47,4 +53,3 @@
     </h3>
   </ng-template>
 </div>
-  
